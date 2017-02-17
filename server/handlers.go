@@ -2,6 +2,7 @@ package server
 
 import (
     "io"
+    "io/ioutil"
     "log"
     "os"
     "net/http"
@@ -51,7 +52,12 @@ func (s *Server) imageLoadHandler(w http.ResponseWriter, r *http.Request) {
         s.errorHandler(w, r, 404)
         return
     }
-    r.ParseForm()
-    log.Println(r.Form)
-    log.Println(r.Form.Get("data"))
+    body, err := ioutil.ReadAll(r.Body);
+    if err != nil {
+        log.Println("error")
+        return
+    }
+    log.Println(r)
+    log.Println(r.Header.Get("Content-Type"))
+    log.Println(body[0])
 }

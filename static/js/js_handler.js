@@ -1,28 +1,35 @@
 (function ($) { 
- 
+
+var fileTypes = ['jpg', 'jpeg', 'png'];
 var localFilename;
 
 function readURL(input) {
     if (input.files && input.files[0]) {
-        var file  = input.files[0];
-        var reader = new FileReader();
-      
-        reader.onload = function (e) {
-            $('#loaded_img').attr('src', e.target.result);
-        
-            $.ajax({
-                url: "/load_image",
-                type: "POST",
-                data: e.target.result,
-                contentType:"image/jpeg; base64",
-                success: function (filename) {
-                    localFilename = filename
-                    console.log(filename);
-                },
-            });
-        }
+        var extension = input.files[0].name.split('.').pop().toLowerCase();
+        isSuccess = fileTypes.indexOf(extension) > -1;
+        console.log(extension)
+        if (isSuccess) {
+            var file  = input.files[0];
+            var reader = new FileReader();
+          
+            reader.onload = function (e) {
+                $('#loaded_img').attr('src', e.target.result);
             
-        reader.readAsDataURL(file);
+                $.ajax({
+                    url: "/load_image",
+                    type: "POST",
+                    data: e.target.result,
+                    contentType:"image/" + extension + "; base64",
+                    success: function (filename) {
+                        localFilename = filename
+                        console.log(filename);
+                    },
+                });
+            }
+            reader.readAsDataURL(file);
+        } else {
+            alert('wrong file type')
+        }
     }
 }
     
