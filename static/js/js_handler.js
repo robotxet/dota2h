@@ -40,7 +40,7 @@ function calcTf(e) {
     console.log("here")
     console.log(localFilename)
     $.ajax({
-        url: "/calc",
+        url: "/process_tf",
         type: "POST",
         data: localFilename,
         contentType: "text/plain",

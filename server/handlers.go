@@ -43,6 +43,15 @@ func (s *Server) indexHandler(w http.ResponseWriter, r *http.Request) {
         s.errorHandler(w, r, 404)
         return
     }
-
     s.renderTemplate(w, "layout", "index.html", nil)
+}
+
+func (s *Server) imageLoadHandler(w http.ResponseWriter, r *http.Request) {
+    if r.URL.Path != "/load_image" {
+        s.errorHandler(w, r, 404)
+        return
+    }
+    r.ParseForm()
+    log.Println(r.Form)
+    log.Println(r.Form.Get("data"))
 }

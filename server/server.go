@@ -105,7 +105,7 @@ func (s *Server) Run() {
 
     http.HandleFunc("/", s.indexHandler)
     // http.HandleFunc("/process_tf", s.tfHandler)
-    // htpp.HandleFunc("/load_image", s.imageLoadHandler))
+    http.HandleFunc("/load_image", s.imageLoadHandler)
 
     http.HandleFunc("/static/", s.staticHandler)
 
