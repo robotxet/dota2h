@@ -1,6 +1,0 @@
-{
-    "httpPort": 8080,
-    "imagePath": "/home/robotzet/godev/src/github.com/robotxet/dota2h/images",
-    "scriptPath": "/home/robotzet/godev/src/github.com/robotxet/dota2h/script/label_image.py",
-    "dataPath": "/home/robotzet/godev/src/github.com/robotxet/dota2h/script/tf_data/"
-}
