@@ -7,7 +7,6 @@ function readURL(input) {
     if (input.files && input.files[0]) {
         var extension = input.files[0].name.split('.').pop().toLowerCase();
         isSuccess = fileTypes.indexOf(extension) > -1;
-        console.log(extension)
         if (isSuccess) {
             var file  = input.files[0];
             var reader = new FileReader();

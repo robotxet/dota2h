@@ -17,7 +17,10 @@ import (
 
 //Config is a struct that stores server configuration
 type Config struct {
-    HTTPPort      int            `json:"httpPort"`
+    HTTPPort   int    `json:"httpPort"`
+    ImagePath  string `json:imagePath`
+    ScriptPath string `json:scriptPath`
+    DataPath   string `json:dataPath`
 }
 
 //Server is a main server struct
@@ -102,9 +105,12 @@ func (s *Server) Run() {
     s.parseTemplates()
     go s.watchTemplates()
 
+    if _, err := os.Stat(s.config.ImagePath); os.IsNotExist(err) {
+        os.Mkdir(s.config.ImagePath, 0777)
+    }
 
     http.HandleFunc("/", s.indexHandler)
-    // http.HandleFunc("/process_tf", s.tfHandler)
+    http.HandleFunc("/process_tf", s.tfHandler)
     http.HandleFunc("/load_image", s.imageLoadHandler)
 
     http.HandleFunc("/static/", s.staticHandler)

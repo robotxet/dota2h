@@ -4,7 +4,7 @@ import (
     "math/rand"
     "time"
 
-    "dota2_server/server"
+    "github.com/robotxet/dota2h/server"
 )
 
 func main() {
