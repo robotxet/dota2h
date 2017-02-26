@@ -21,7 +21,6 @@ function readURL(input) {
                     contentType:"image/" + extension + "; base64",
                     success: function (filename) {
                         localFilename = filename
-                        console.log(filename);
                     },
                 });
             }
@@ -43,15 +42,15 @@ document.getElementById("calcTflow").addEventListener("submit", function (e) {
 });
 
 function calcTf(e) {
-    console.log("here")
-    console.log(localFilename)
     $.ajax({
         url: "/process_tf",
         type: "POST",
         data: localFilename,
         contentType: "text/plain",
         success: function (result) {
-            $("#result").val(result)
+            $("#result").val(atob(result["TfData"]))
+            $("#avatar").html('<img src="data:image/png;base64,' + result["ImgData"] + '"/>')
+            $("#history").html('<textarea readonly rows=10 cols=80 id="result">' + result["History"] + '</textarea>')
         },
     });
 

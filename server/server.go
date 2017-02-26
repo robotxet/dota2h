@@ -21,6 +21,7 @@ type Config struct {
     ImagePath  string `json:imagePath`
     ScriptPath string `json:scriptPath`
     DataPath   string `json:dataPath`
+    LorePath   string `json:lorePath`
 }
 
 //Server is a main server struct

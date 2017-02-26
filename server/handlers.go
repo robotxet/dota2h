@@ -3,6 +3,7 @@ package server
 import (
     "bytes"
     "encoding/base64"
+    "encoding/json"
     "io"
     "io/ioutil"
     "log"
@@ -16,7 +17,11 @@ import (
     "github.com/satori/go.uuid"
 )
 
-var  ImageTypes = map[string]bool {"jpg" : true, "jpeg" : true, "png": true}
+type TfResponse struct {
+    TfData  []byte
+    ImgData []byte
+    History string
+}
 
 func (s *Server) renderTemplate(wr io.Writer, key string, name string, data interface{}) {
     s.tMutex.RLock()
@@ -113,6 +118,15 @@ func (s *Server) imageLoadHandler(w http.ResponseWriter, r *http.Request) {
     }
 }
 
+func firstWord(value string) string {
+    for i := range value {
+        if value[i] == ' ' {
+            return value[0:i]
+        }
+    }
+    return ""
+}
+
 func (s *Server) tfHandler( w http.ResponseWriter, r *http.Request) {
     if r.URL.Path != "/process_tf" {
         s.errorHandler(w, r, 404)
@@ -130,7 +144,30 @@ func (s *Server) tfHandler( w http.ResponseWriter, r *http.Request) {
     cmd.Stdout = &out
     cmd.Stderr = &stderr
     if err := cmd.Run(); err == nil {
-        w.Write(out.Bytes())
+        topresult := firstWord(string(out.Bytes()))
+        var avatar []byte
+        var history string
+        if HeroMap[topresult] != "" {
+            lorePath := s.config.LorePath + "/" + topresult + "/"
+            avatar, err = ioutil.ReadFile(lorePath + "avatar.png")
+            if err != nil {
+                log.Println("Failed to get avatar")
+            }
+            data, err := ioutil.ReadFile(lorePath + "history_english.txt")
+            if err != nil {
+                log.Println("Failed to get history")
+            }
+            history = string(data)
+        }
+
+        tfResponse := TfResponse{out.Bytes(), avatar, history}
+        js, err := json.Marshal(tfResponse)
+        if err != nil {
+            log.Println("failed to create json")
+            return
+        }
+        w.Header().Set("Content-Type", "application/json")
+        w.Write(js)
     } else {
         log.Println(stderr.String())
         
