@@ -119,10 +119,10 @@ func (s *Server) imageLoadHandler(w http.ResponseWriter, r *http.Request) {
     }
 }
 
-func firstWord(value string) string {
+func firstHero(value string) string {
     for i := range value {
-        if value[i] == ' ' {
-            return value[0:i]
+        if value[i] == '(' {
+            return value[0:i - 1]
         }
     }
     return ""
@@ -145,7 +145,6 @@ func (s *Server) tfHandler( w http.ResponseWriter, r *http.Request) {
     cmd.Stdout = &out
     cmd.Stderr = &stderr
     if err := cmd.Run(); err == nil {
-        log.Println(string(out.Bytes()))
         topresult := firstWord(string(out.Bytes()))
         var avatar []byte
         var history string
