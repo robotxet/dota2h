@@ -12,6 +12,7 @@ import (
     "net/http"
     "regexp"
     "strconv"
+    "strings"
     "time"
 
     "github.com/satori/go.uuid"
@@ -114,7 +115,7 @@ func (s *Server) imageLoadHandler(w http.ResponseWriter, r *http.Request) {
         return
     } else {
         log.Println(filename)
-        w.Write([]byte(filename)) 
+        w.Write([]byte(filename))
     }
 }
 
@@ -159,7 +160,7 @@ func (s *Server) tfHandler( w http.ResponseWriter, r *http.Request) {
             if err != nil {
                 log.Println("Failed to get history")
             }
-            history = string(data)
+            history = strings.TrimSpace(string(data))
         }
 
         tfResponse := TfResponse{out.Bytes(), avatar, history}
@@ -172,7 +173,6 @@ func (s *Server) tfHandler( w http.ResponseWriter, r *http.Request) {
         w.Write(js)
     } else {
         log.Println(stderr.String())
-        
         log.Println("Failed to run tf script: " + err.Error())
     }
 }

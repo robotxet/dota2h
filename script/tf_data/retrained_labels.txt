@@ -1,113 +1,113 @@
-abaddon
-alchemist
-ancient apparition
-anti mage
-arc warden
-axe
+naga siren
+medusa
+undying
+riki
+tusk
+sniper
+night stalker
+dark seer
+pugna
+witch doctor
 bane
+anti mage
+ember spirit
 batrider
+abaddon
+kunkka
+weaver
+centaur warrunner
+clinkz
+earthshaker
+lion
+necrophos
+chen
+troll warlord
+treant protector
+disruptor
+spirit breaker
+legion commander
+death prophet
+drow ranger
+invoker
+juggernaut
+ursa
+lycan
+shadow shaman
+meepo
+outworld devourer
+tinker
+broodmother
+huskar
+techies
+elder titan
+omniknight
+terrorblade
+alchemist
+nyx assassin
+sven
+shadow demon
+puck
+slark
+mirana
+lifestealer
+earth spirit
+dragon knight
+morphling
+luna
+tiny
+razor
+templar assassin
+pudge
+phantom lancer
+warlock
+sand king
+zeus
+gyrocopter
+silencer
+enigma
+storm spirit
+faceless void
+venomancer
+doom
+lina
+monkey king
+lone druid
+brewmaster
+wraith king
+clockwerk
+keeper of the light
+underlord
+vengeful spirit
+bristleback
+lich
+visage
+nature s prophet
+slardar
+shadow fiend
+tidehunter
+io
+rubick
+enchantress
+dazzle
+winter wyvern
+timbersaw
+magnus
+crystal maiden
+arc warden
+phantom assassin
+ogre magi
+phoenix
+leshrac
+chaos knight
 beastmaster
 bloodseeker
-bounty hunter
-brewmaster
-bristleback
-broodmother
-centaur warrunner
-chaos knight
-chen
-clinkz
-clockwerk
-crystal maiden
-dark seer
-dazzle
-death prophet
-disruptor
-doom
-dragon knight
-drow ranger
-earth spirit
-earthshaker
-elder titan
-ember spirit
-enchantress
-enigma
-faceless void
-gyrocopter
-huskar
-invoker
-io
-jakiro
-juggernaut
-keeper of the light
-kunkka
-legion commander
-leshrac
-lich
-lifestealer
-lina
-lion
-lone druid
-luna
-lycan
-magnus
-medusa
-meepo
-mirana
-monkey king
-morphling
-naga siren
-nature s prophet
-necrophos
-night stalker
-nyx assassin
-ogre magi
-omniknight
-oracle
-outworld devourer
-phantom assassin
-phantom lancer
-phoenix
-puck
-pudge
-pugna
 queen of pain
-razor
-riki
-rubick
-sand king
-shadow demon
-shadow fiend
-shadow shaman
-silencer
 skywrath mage
-slardar
-slark
-sniper
-spectre
-spirit breaker
-storm spirit
-sven
-techies
-templar assassin
-terrorblade
-tidehunter
-timbersaw
-tinker
-tiny
-treant protector
-troll warlord
-tusk
-underlord
-undying
-ursa
-vengeful spirit
-venomancer
+jakiro
 viper
-visage
-warlock
-weaver
+spectre
+bounty hunter
 windranger
-winter wyvern
-witch doctor
-wraith king
-zeus
+ancient apparition
+axe
+oracle
