@@ -71,7 +71,9 @@ func (s *Server) saveImage(content []byte, iType string) string {
     imgName := uuid.NewV4();
     file, err := os.Create(imgPath + "/" + imgName.String() + "." + iType)
     defer file.Close()
+
     if err != nil {
+        log.Println("Failed to save image: " + err.Error())
         return ""
     }
 
@@ -82,11 +84,13 @@ func (s *Server) saveImage(content []byte, iType string) string {
 
     decoded, err = base64.StdEncoding.DecodeString(imgstring[1])
     if err != nil {
-        log.Println(err.Error())
+        log.Println("Failed to save image: " + err.Error())
         return ""
     }
+
     _, err = file.Write(decoded)
     if err != nil {
+        log.Println("Failed to save image: " + err.Error())
         return ""
     }
     return date.Format("06-01-02") + "/" + imgName.String() + "." + iType
@@ -111,10 +115,9 @@ func (s *Server) imageLoadHandler(w http.ResponseWriter, r *http.Request) {
     }
     filename := s.saveImage(body, imgType)
     if filename == "" {
-        log.Println("Failed to save image")
+        s.errorHandler(w, r, http.StatusNotFound)
         return
     } else {
-        log.Println(filename)
         w.Write([]byte(filename))
     }
 }
