@@ -149,7 +149,8 @@ func (s *Server) tfHandler( w http.ResponseWriter, r *http.Request) {
         var history string
         log.Println(topresult + " : " + HeroMap[topresult])
         if HeroMap[topresult] != "" {
-            lorePath := s.config.LorePath + "/" + topresult + "/"
+            lorePath := s.config.LorePath + "/" + HeroMap[topresult] + "/"
+            log.Println(lorePath)
             avatar, err = ioutil.ReadFile(lorePath + "avatar.png")
             if err != nil {
                 log.Println("Failed to get avatar")

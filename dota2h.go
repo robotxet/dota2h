@@ -1,6 +1,7 @@
 package main
 
 import (
+    "flag"
     "math/rand"
     "time"
 
@@ -8,7 +9,9 @@ import (
 )
 
 func main() {
-    config := server.ParseConfig("./conf/config.json")
+    configPath := flag.String("config", "./conf/config.json", "Server config")
+    flag.Parse()
+    config := server.ParseConfig(*configPath)
 
     rand.Seed(time.Now().UTC().UnixNano())
 
