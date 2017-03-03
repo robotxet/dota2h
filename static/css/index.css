@@ -8,6 +8,20 @@
     max-height:300px;
 }
 
-#avatar_img {
-	
+#wrapper {
+	margin-right: 0px;
+}
+
+#content {
+	float: left;
+	width: 50%;
+}
+
+#sidebar {
+	float: right;
+	width: 50%;
+}
+
+#cleared {
+  clear: both;
 }

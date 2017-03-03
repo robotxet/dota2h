@@ -8,23 +8,24 @@
     <link rel="stylesheet" type="text/css" href="/static/css/index.css">
 </head>
 <body>
-
     <h2>Check who you are!</h2>
-    <form id="load_file" runat="server">
-            <input type='file' id="imgInp" />
-            <img id="loaded_img" src="" alt="image"/>
-    </form>
-    <form id="calcTflow" action="/calc" method="post">
-        <button type="submit" id="btnSubmit">Let me know!</button>
-    </form>
-
-    <textarea readonly rows=30 cols=80 id="result"></textarea>
-    <div id="avatar">
+    <div id="wrapper">
+        <div id="content">
+            <form id="load_file" runat="server">
+                    <input type='file' id="imgInp" />
+                    <img id="loaded_img" src="" alt="image"/>
+            </form>
+            <form id="calcTflow" action="/calc" method="post">
+                <button type="submit" id="btnSubmit">Let me know!</button>
+            </form>
+            <textarea readonly rows=30 cols=80 id="result"></textarea>
+        </div>
+        <div id="sidebar">
+            <div id="avatar"></div>
+            <div id="history"></div>
+        </div>
+        <div id="cleared"></div>
     </div>
-    <div id="history">
-    </div>
-
-    
 
     <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="/static/js/js_handler.js"></script>
