@@ -49,7 +49,7 @@ function calcTf(e) {
         contentType: "text/plain",
         success: function (result) {
             $("#result").val(atob(result["TfData"]))
-            $("#avatar").html('<img id="avatar_img" src="data:image/png;base64,' + result["ImgData"] + '"/>')
+            $("#avatar").html('<div class="image-cropper"><img id="avatar_img" src="data:image/png;base64,' + result["ImgData"] + '"/></div>')
             $("#history").html('<textarea readonly rows=10 cols=80 id="result">' + result["History"] + '</textarea>')
         },
     });
