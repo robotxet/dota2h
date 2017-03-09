@@ -3,7 +3,7 @@
 #wrap {
 	text-align: center;
 	margin: 0px 100px 0px 100px;
-	width: 600px;
+	max-width: 1000px;
 	margin: 0 auto;
 	border: 1px double;
 	outline: 1px solid #cc3300;
@@ -31,20 +31,6 @@
     height:100%;
     max-height:300px;
 }
-
-#cleared {
-  clear: both;
-}
-
-/*.circle {
-    border: 1px solid black;
-    border-radius: 70%;
-    display: inline-block;
-}
-.circle img {
-    border-radius: 70%;
-    display: block;
-}*/
 
 .image-cropper {
     width: 256px;

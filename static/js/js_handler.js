@@ -12,7 +12,7 @@ function readURL(input) {
             var reader = new FileReader();
           
             reader.onload = function (e) {
-                $('#loaded_img').attr('src', e.target.result);
+                // $('#loaded_img').attr('src', e.target.result);
             
                 $.ajax({
                     url: "/load_image",

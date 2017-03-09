@@ -24,6 +24,8 @@ type TfResponse struct {
     History string
 }
 
+type TfResponseData []TfResponse
+
 func (s *Server) renderTemplate(wr io.Writer, key string, name string, data interface{}) {
     s.tMutex.RLock()
     t := s.templates[key]
@@ -122,13 +124,16 @@ func (s *Server) imageLoadHandler(w http.ResponseWriter, r *http.Request) {
     }
 }
 
-func firstHero(value string) string {
-    for i := range value {
-        if value[i] == '(' {
-            return value[0:i - 1]
-        }
+func top3(value string) map[string]float64 {
+    result := make(map[string]float64)
+    splitted := strings.Split(value, "\n")
+    top3 := splitted[:3]
+    for key, item := range top3 {
+        itemKv := strings.Split(item, ":")
+        result[itemKv[0]], _ = strconv.ParseFloat(itemKv[1], 64)
     }
-    return ""
+    log.Println(result)
+    return result
 }
 
 func (s *Server) tfHandler( w http.ResponseWriter, r *http.Request) {
@@ -148,9 +153,13 @@ func (s *Server) tfHandler( w http.ResponseWriter, r *http.Request) {
     cmd.Stdout = &out
     cmd.Stderr = &stderr
     if err := cmd.Run(); err == nil {
-        topresult := firstHero(string(out.Bytes()))
-        var avatar []byte
-        var history string
+        topresults := top3(string(out.Bytes()))
+        var avatars [][]byte
+        var histories []string
+        var response = make(TfResponseData, len(topresults))
+        for key, value := range topresults {
+
+        }
         log.Println(topresult + " : " + HeroMap[topresult])
         if HeroMap[topresult] != "" {
             lorePath := s.config.LorePath + "/" + HeroMap[topresult] + "/"
