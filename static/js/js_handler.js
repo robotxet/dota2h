@@ -31,7 +31,7 @@ function readURL(input) {
     }
 }
     
-$("#imgInp").change(function(){
+$("#file").change(function(){
     readURL(this);
 });
 
