@@ -32,7 +32,7 @@ def calc_score(img_path, img_file):
         for node_id in top_k:
             human_string = label_lines[node_id]
             score = predictions[0][node_id]
-            result += '%s (score = %.5f)\n' % (human_string, score)
+            result += '%s:%.5f\n' % (human_string, score)
     return result
 
 def main():

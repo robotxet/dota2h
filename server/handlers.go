@@ -19,7 +19,8 @@ import (
 )
 
 type TfResponse struct {
-    TfData  []byte
+    Hero    string
+    Rating  float64
     ImgData []byte
     History string
 }
@@ -128,7 +129,7 @@ func top3(value string) map[string]float64 {
     result := make(map[string]float64)
     splitted := strings.Split(value, "\n")
     top3 := splitted[:3]
-    for key, item := range top3 {
+    for _, item := range top3 {
         itemKv := strings.Split(item, ":")
         result[itemKv[0]], _ = strconv.ParseFloat(itemKv[1], 64)
     }
@@ -154,29 +155,33 @@ func (s *Server) tfHandler( w http.ResponseWriter, r *http.Request) {
     cmd.Stderr = &stderr
     if err := cmd.Run(); err == nil {
         topresults := top3(string(out.Bytes()))
-        var avatars [][]byte
-        var histories []string
+        var avatar  []byte
+        var history string
         var response = make(TfResponseData, len(topresults))
+        index := 0
         for key, value := range topresults {
-
-        }
-        log.Println(topresult + " : " + HeroMap[topresult])
-        if HeroMap[topresult] != "" {
-            lorePath := s.config.LorePath + "/" + HeroMap[topresult] + "/"
-            log.Println(lorePath)
-            avatar, err = ioutil.ReadFile(lorePath + "avatar.png")
-            if err != nil {
-                log.Println("Failed to get avatar")
+            if HeroMap[key] != "" {
+                lorePath := s.config.LorePath + "/" + HeroMap[key] + "/"
+                avatar, err = ioutil.ReadFile(lorePath + "avatar.png")
+                if err != nil {
+                    log.Println("Failed to get avatar")
+                }
+                data, err := ioutil.ReadFile(lorePath + "history_english.txt")
+                if err != nil {
+                    log.Println("Failed to get history")
+                }
+                history = strings.TrimSpace(string(data))
             }
-            data, err := ioutil.ReadFile(lorePath + "history_english.txt")
-            if err != nil {
-                log.Println("Failed to get history")
+            item := TfResponse {
+                Hero: key,
+                Rating: value,
+                ImgData: avatar,
+                History: history,
             }
-            history = strings.TrimSpace(string(data))
+            response[index] = item
+            index += 1
         }
-
-        tfResponse := TfResponse{out.Bytes(), avatar, history}
-        js, err := json.Marshal(tfResponse)
+        js, err := json.Marshal(response)
         if err != nil {
             log.Println("failed to create json")
             return

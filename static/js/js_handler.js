@@ -1,5 +1,13 @@
 (function ($) { 
 
+function compare(a,b) {
+  if (a.Rating > b.Rating)
+    return -1;
+  if (a.Rating < b.Rating)
+    return 1;
+  return 0;
+}
+
 var fileTypes = ['jpg', 'jpeg', 'png'];
 var localFilename;
 
@@ -48,9 +56,22 @@ function calcTf(e) {
         data: localFilename,
         contentType: "text/plain",
         success: function (result) {
-            $("#result").val(atob(result["TfData"]))
-            $("#avatar").html('<div class="image-cropper"><img id="avatar_img" src="data:image/png;base64,' + result["ImgData"] + '"/></div>')
-            $("#history").html('<textarea readonly rows=10 cols=80 id="result">' + result["History"] + '</textarea>')
+            result.sort(compare)
+            // TODO for each sum rating and make percentile + scale avatars based on persentile
+            console.log(result)
+            $("#heroname").html(
+                '<div class="column-left">' + result[0]["Hero"] + ' : ' + result[0]["Rating"] + '</div>' +
+                '<div class="column-left">' + result[1]["Hero"] + ' : ' + result[1]["Rating"] + '</div>' +
+                '<div class="column-left">' + result[2]["Hero"] + ' : ' + result[2]["Rating"] + '</div>'
+                )
+
+            $("#avatar").html(
+                '<div class="column-left"><div class="image-cropper"><img id="avatar_img" src="data:image/png;base64,' + result[0]["ImgData"] + '"/></div></div>' +
+                '<div class="column-center"><div class="image-cropper"><img id="avatar_img" src="data:image/png;base64,' + result[1]["ImgData"] + '"/></div></div>' +
+                '<div class="column-right"><div class="image-cropper"><img id="avatar_img" src="data:image/png;base64,' + result[2]["ImgData"] + '"/></div></div>'
+                )
+            var history = document.getElementById("history");
+            history.textContent = result[0]["History"]
         },
     });
 
