@@ -25,6 +25,7 @@
 }
 
 #loaded_img {
+	visibility: hidden;
 	width:100%;
     max-width:400px;
 
@@ -46,10 +47,66 @@
     border-color: #AB1010;
     border-style: solid;
     text-align: center;
+    display: inline-block;
+    vertical-align: middle;
 }
 
 .image-cropper img {
+	display: block;
     margin-top: 56px;
+    vertical-align: middle;
+}
+
+.image-cropper-second {
+    width: 256px;
+    height: 256px;
+    position: relative;
+    overflow: hidden;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+    border-width: 5px;
+    border-color: #AB1010;
+    border-style: solid;
+    text-align: center;
+    zoom: 0.75;
+    -moz-transform: scale(0.75);
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.image-cropper-second img {
+	display: block;
+    margin-top: 56px;
+    vertical-align: middle;
+}
+
+.image-cropper-third {
+    width: 256px;
+    height: 256px;
+    position: relative;
+    overflow: hidden;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+    border-width: 5px;
+    border-color: #AB1010;
+    border-style: solid;
+    text-align: center;
+    zoom: 0.7;
+    -moz-transform: scale(0.7);
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.image-cropper-third img {
+	display: block;
+    margin-top: 56px;
+    vertical-align: middle
 }
 
 .button {
@@ -97,3 +154,11 @@
 .column-left{ float: left; width: 33%; }
 .column-right{ float: right; width: 33%; }
 .column-center{ display: inline-block; width: 33%; }
+
+#history {
+	display: inline-block;
+}
+
+#avatar {
+	display: inline;
+}

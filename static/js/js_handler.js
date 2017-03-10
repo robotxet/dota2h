@@ -20,8 +20,6 @@ function readURL(input) {
             var reader = new FileReader();
           
             reader.onload = function (e) {
-                // $('#loaded_img').attr('src', e.target.result);
-            
                 $.ajax({
                     url: "/load_image",
                     type: "POST",
@@ -31,6 +29,9 @@ function readURL(input) {
                         localFilename = filename
                     },
                 });
+                document.getElementById("loaded_img").style.visibility = "visible"; 
+                $('#loaded_img').attr('src', e.target.result);
+
             }
             reader.readAsDataURL(file);
         } else {
@@ -57,21 +58,29 @@ function calcTf(e) {
         contentType: "text/plain",
         success: function (result) {
             result.sort(compare)
+            var totalPercentage = 0;
+            for (var i = 0, len = result.length; i < len; i++) {
+                totalPercentage += result[i]["Rating"]
+            }
+
             // TODO for each sum rating and make percentile + scale avatars based on persentile
             console.log(result)
             $("#heroname").html(
-                '<div class="column-left">' + result[0]["Hero"] + ' : ' + result[0]["Rating"] + '</div>' +
-                '<div class="column-left">' + result[1]["Hero"] + ' : ' + result[1]["Rating"] + '</div>' +
-                '<div class="column-left">' + result[2]["Hero"] + ' : ' + result[2]["Rating"] + '</div>'
+                '<div class="column-left">' + '<div>' + result[0]["Hero"] + ' : ' + (result[0]["Rating"] / totalPercentage).toFixed(2) + '</div>' + '</div>' +
+                '<div class="column-center">' + '<div>' + result[1]["Hero"] + ' : ' + (result[1]["Rating"] / totalPercentage).toFixed(2) + '</div>' + '</div>' +
+                '<div class="column-right">' + '<div>' + result[2]["Hero"] + ' : ' + (result[2]["Rating"] / totalPercentage).toFixed(2) + '</div>'
                 )
 
             $("#avatar").html(
                 '<div class="column-left"><div class="image-cropper"><img id="avatar_img" src="data:image/png;base64,' + result[0]["ImgData"] + '"/></div></div>' +
-                '<div class="column-center"><div class="image-cropper"><img id="avatar_img" src="data:image/png;base64,' + result[1]["ImgData"] + '"/></div></div>' +
-                '<div class="column-right"><div class="image-cropper"><img id="avatar_img" src="data:image/png;base64,' + result[2]["ImgData"] + '"/></div></div>'
+                '<div class="column-center"><div class="image-cropper-second"><img id="avatar_img" src="data:image/png;base64,' + result[1]["ImgData"] + '"/></div></div>' +
+                '<div class="column-right"><div class="image-cropper-third"><img id="avatar_img" src="data:image/png;base64,' + result[2]["ImgData"] + '"/></div></div>'
                 )
-            var history = document.getElementById("history");
-            history.textContent = result[0]["History"]
+            $("#history").html(
+                '<div class="column-left">' + result[0]["History"] + '</div>' +
+                '<div class="column-center">' + result[1]["History"] + '</div>' +
+                '<div class="column-right">' + result[2]["History"] + '</div>'
+                )
         },
     });
 
