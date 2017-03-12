@@ -92,7 +92,8 @@ function calcTf(e) {
     });
     $(document).ajaxComplete(function() {
         spinner.style.visibility = "hidden";
-        info.style.visibility = "visible";
+        $("#info").css({opacity: 0, visibility: "visible"}).animate({opacity: 1.0}, 2000);
+        // info.style.visibility = "visible";
     });
 
     e.preventDefault();
