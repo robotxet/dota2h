@@ -4,7 +4,7 @@
 	text-align: center;
 	margin: 0px 100px 0px 100px;
 	max-width: 1200px;
-	margin: 0 auto;
+    margin: 0 auto;
 	border: 1px double;
 	outline: 1px solid #cc3300;
 	outline-offset: -4px;
@@ -23,6 +23,10 @@
     background-size: 100%;
     background-attachment: fixed;
     background-color: black;
+}
+
+#load_file {
+    padding: 10px;
 }
 
 #loaded_img {
