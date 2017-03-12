@@ -1,4 +1,8 @@
-(function ($) { 
+(function ($) {
+
+var btn = document.getElementById("btnSubmit");
+var info = document.getElementById("info")
+var spinner = document.getElementById("spinner")
 
 function compare(a,b) {
   if (a.Rating > b.Rating)
@@ -31,6 +35,7 @@ function readURL(input) {
                 });
                 document.getElementById("loaded_img").style.visibility = "visible"; 
                 $('#loaded_img').attr('src', e.target.result);
+                btn.disabled = false;
 
             }
             reader.readAsDataURL(file);
@@ -51,6 +56,7 @@ document.getElementById("calcTflow").addEventListener("submit", function (e) {
 });
 
 function calcTf(e) {
+    spinner.style.visibility = "visible";
     $.ajax({
         url: "/process_tf",
         type: "POST",
@@ -77,11 +83,15 @@ function calcTf(e) {
                 '<div class="column-right"><div class="image-cropper-third"><img id="avatar_img" src="data:image/png;base64,' + result[2]["ImgData"] + '"/></div></div>'
                 )
             $("#history").html(
-                '<div class="column-left">' + result[0]["History"] + '</div>' +
-                '<div class="column-center">' + result[1]["History"] + '</div>' +
-                '<div class="column-right">' + result[2]["History"] + '</div>'
+                '<div class="column-left-history">' + result[0]["History"] + '</div>' +
+                '<div class="column-center-history">' + result[1]["History"] + '</div>' +
+                '<div class="column-right-history">' + result[2]["History"] + '</div>'
                 )
         },
+    });
+    $(document).ajaxComplete(function() {
+        spinner.style.visibility = "hidden";
+        info.style.visibility = "visible";
     });
 
     e.preventDefault();

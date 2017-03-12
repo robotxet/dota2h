@@ -3,7 +3,7 @@
 #wrap {
 	text-align: center;
 	margin: 0px 100px 0px 100px;
-	max-width: 1000px;
+	max-width: 1200px;
 	margin: 0 auto;
 	border: 1px double;
 	outline: 1px solid #cc3300;
@@ -11,6 +11,7 @@
 	border-style: solid;
     border-color: #cc3300;
     background-color: black;
+    padding: 10px;
 }
 
 #background {
@@ -25,6 +26,7 @@
 }
 
 #loaded_img {
+    margin: 10px;
 	visibility: hidden;
 	width:100%;
     max-width:400px;
@@ -121,6 +123,17 @@
     cursor: pointer;
 }
 
+.button[disabled=disabled], .button:disabled {
+    background-color: #cccccc; 
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
 .inputfile {
 	width: 0.1px;
 	height: 0.1px;
@@ -131,15 +144,16 @@
 }
 
 .inputfile + label {
+    text-align: center;
     font-size: 1.25em;
     font-weight: 700;
     color: white;
     display: inline-block;
+    background-color: #AB1010;
 }
 
 .inputfile:focus + label,
 .inputfile + label:hover {
-    background-color: black;
 }
 
 .inputfile + label {
@@ -151,9 +165,40 @@
 	outline: -webkit-focus-ring-color auto 5px;
 }
 
-.column-left{ float: left; width: 33%; }
-.column-right{ float: right; width: 33%; }
-.column-center{ display: inline-block; width: 33%; }
+.column-left { 
+    float: left;
+    width: 33%;
+    padding-bottom: 3px;
+}
+.column-right {
+    float: right;
+    width: 33%;
+    padding-bottom: 3px;
+}
+.column-center{ 
+    display: inline-block; 
+    width: 33%; 
+    padding-bottom: 3px;
+}
+
+.column-left-history { 
+    float: left;
+    width: 33%;
+    /*padding: 3px;*/
+}
+.column-right-history {
+    float: right;
+    width: 33%;
+    /*padding: 3px;*/
+}
+.column-center-history { 
+    display: inline-block; 
+    width: 33%; 
+    border-left: 1px solid #AB1010;
+    border-right: 1px solid #AB1010;
+    padding: 4px;
+
+}
 
 #history {
 	display: inline-block;
@@ -161,4 +206,57 @@
 
 #avatar {
 	display: inline;
+}
+
+@-webkit-keyframes spinner {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes spinner {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+.spinner {
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  left: 50%;
+  margin-left: -34px;
+  margin-top: 34px;
+
+}
+.spinner:after, .spinner:before {
+  content: "";
+  position: absolute;
+  border: 2px solid white;
+  width: 30px;
+  height: 30px;
+}
+.spinner:after {
+  -webkit-animation: spinner 2.5s linear infinite;
+          animation: spinner 2.5s linear infinite;
+}
+.spinner:before {
+  width: 44px;
+  height: 44px;
+  margin-left: -7px;
+  margin-top: -7px;
+  -webkit-animation: spinner 2.5s linear infinite;
+          animation: spinner 2.5s linear infinite;
+  -webkit-animation-direction: reverse;
+          animation-direction: reverse;
 }

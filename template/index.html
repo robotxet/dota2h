@@ -10,26 +10,29 @@
 <body id="background" background="/static/images/background.png">
     <h1 align="center">Rate your familiarity with Dota 2 heroes</h1>
     <div id="wrap">
-            <div>
-                <form id="load_file" runat="server">
-                        <div>
-                            <input type="file" name="file" id="file" class="inputfile" />
-                            <label for="file">Load picture</label>
-                        </div>
-                        <div>
-                            <img id="loaded_img" src="" alt="image"/>
-                        </div>
-                </form>
-                <form id="calcTflow" action="/calc" method="post">
-                    <button class="button" type="submit" id="btnSubmit">Let me know!</button>
-                </form>
-            </div>
+        <div>
+            <form id="load_file" runat="server">
+                    <div>
+                        <input type="file" name="file" id="file" class="inputfile" />
+                        <label for="file" style="width: 180px; height: 30px;">Load jpeg picture</label>
+                    </div>
+                    <div>
+                        <img id="loaded_img" src="" alt="image"/>
+                    </div>
+            </form>
+            <form id="calcTflow" action="/calc" method="post">
+                <button class="button" type="submit" id="btnSubmit" disabled>Let me know!</button>
+            </form>
+        </div>
+        <div class="spinner" id="spinner" style="visibility: hidden;"></div>
+        <div id="info" style="visibility: hidden;">
             <h2 align="center">Top 3 heroes:</h2>
             <div>
                 <div id="heroname"></div>
                 <div id="avatar"></div>
                 <div id="history"></div>
             </div>
+        </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="/static/js/js_handler.js"></script>
