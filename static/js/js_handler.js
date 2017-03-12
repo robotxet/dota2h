@@ -56,6 +56,7 @@ document.getElementById("calcTflow").addEventListener("submit", function (e) {
 });
 
 function calcTf(e) {
+    info.style.visibility = "hidden";
     spinner.style.visibility = "visible";
     $.ajax({
         url: "/process_tf",
