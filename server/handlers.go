@@ -149,6 +149,7 @@ func (s *Server) tfHandler( w http.ResponseWriter, r *http.Request) {
     }
     filename := string(body[:])
     cmd := exec.Command(s.config.ScriptPath, s.config.DataPath, s.config.ImagePath + "/" + filename)
+    getPredictions(s.config.ImagePath + "/" + filename, s.config.DataPath)
     var out bytes.Buffer
     var stderr bytes.Buffer
     cmd.Stdout = &out
